@@ -7,6 +7,7 @@ FROM ${NODE_IMAGE} as node-build
 WORKDIR /web
 COPY src/Web/WebSPA .
 RUN npm install
+RUN npm install elastic-apm-js-base --save
 RUN npm run build:prod
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build

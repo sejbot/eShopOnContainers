@@ -35,6 +35,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using Elastic.Apm.All;
 
 namespace Microsoft.eShopOnContainers.Services.Basket.API
 {
@@ -185,7 +186,7 @@ namespace Microsoft.eShopOnContainers.Services.Basket.API
         {
             //loggerFactory.AddAzureWebAppDiagnostics();
             //loggerFactory.AddApplicationInsights(app.ApplicationServices, LogLevel.Trace);
-
+            app.UseElasticApm(Configuration);
             var pathBase = Configuration["PATH_BASE"];
             if (!string.IsNullOrEmpty(pathBase))
             {
@@ -219,7 +220,7 @@ namespace Microsoft.eShopOnContainers.Services.Basket.API
                });
 
             ConfigureEventBus(app);
-
+            
         }
 
         private void RegisterAppInsights(IServiceCollection services)

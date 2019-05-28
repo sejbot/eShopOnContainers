@@ -31,6 +31,7 @@ using System.Reflection;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Elastic.Apm.All;
 
 namespace Microsoft.eShopOnContainers.Services.Catalog.API
 {
@@ -66,7 +67,7 @@ namespace Microsoft.eShopOnContainers.Services.Catalog.API
 
             //loggerFactory.AddAzureWebAppDiagnostics();
             //loggerFactory.AddApplicationInsights(app.ApplicationServices, LogLevel.Trace);
-
+            app.UseElasticApm(Configuration);
             var pathBase = Configuration["PATH_BASE"];
 
             if (!string.IsNullOrEmpty(pathBase))
