@@ -35,3 +35,14 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
+  
+  apm-server:
+    build:
+      context: elk/apm-server/
+    volumes:
+      - ./elk/apm-server/config/apm-server.yml:/usr/share/apm-server/apm-server.yml:ro
+    ports:
+      - "8200:8200"
+    depends_on:
+      - elasticsearch
+      - kibana
