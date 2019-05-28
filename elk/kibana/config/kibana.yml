@@ -5,3 +5,5 @@
 server.name: kibana
 server.host: "0"
 elasticsearch.url: http://elasticsearch:9200
+xpack.infra.sources.default.fields.message: ["message","@message","e.RenderedMessage"]
+xpack.infra.sources.default.logAlias: filebeat-*,kibana_sample_data_logs*,eshops-*
